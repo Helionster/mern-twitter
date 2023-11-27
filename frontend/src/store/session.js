@@ -80,5 +80,11 @@ export const sessionErrorsReducer = (state = nullErrors, action) => {
       return state;
   }
 };
+
+export const getCurrentUser = () => async dispatch => {
+  const res = await jwtFetch('/api/users/current');
+  const user = await res.json();
+  return dispatch(receiveCurrentUser(user));
+};
   
 export default sessionReducer;
